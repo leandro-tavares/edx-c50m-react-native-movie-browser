@@ -13,7 +13,9 @@ import {
   AsyncStorage,
 } from "react-native";
 
-import { createStackNavigator } from "react-navigation";
+import { createAppContainer } from '@react-navigation/native';
+import { createStackNavigator } from 'react-navigation-stack';
+
 import { Feather, FontAwesome } from "@expo/vector-icons";
 
 import ItemText from "./components/ItemText";
@@ -416,8 +418,14 @@ class MovieScreen extends React.Component {
 }
 
 const AppNavigator = createStackNavigator({
-  HomeScreen,
-  MovieScreen,
+  HomeScreen: HomeScreen,
+  MovieScreen: MovieScreen,
 });
 
-export default AppNavigator;
+const AppContainer = createAppContainer(AppNavigator);
+
+export default class App extends React.Component {
+  render () {
+    return <AppContainer />
+  }
+}
